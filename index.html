@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 2026 ❤️</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #87ceeb;
+    font-family: 'Segoe Script', 'Georgia', serif;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background 1s;
+    color: white;
+  }
+
+  .btn {
+    padding: 18px 40px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255,75,75,0.8);
+    animation: pulse 1.5s infinite;
+    margin: 10px;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px #ff4b2b; }
+    50% { transform: scale(1.08); box-shadow: 0 0 40px #ff4b2b; }
+    100% { transform: scale(1); box-shadow: 0 0 20px #ff4b2b; }
+  }
+
+  .section {
+    display: none;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h1 { font-size: 3rem; margin-bottom: 10px; color: #ffb3c6; animation: glow 2s infinite alternate; }
+  h2 { font-size: 2rem; margin-bottom: 10px; color: #000000; font-weight: bold; }
+
+  /* Glitter red text for final love message */
+  .glitter {
+    color: #ff0033;
+    text-shadow:
+      0 0 5px #ff0033,
+      0 0 10px #ff3366,
+      0 0 20px #ff6699,
+      0 0 30px #ff3366;
+    animation: sparkle 2s infinite alternate;
+  }
+
+  @keyframes sparkle {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+  }
+  .quote { margin-top: 10px; font-size: 1.2rem; color: #000000; font-weight: 600; }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #ff4d6d; }
+    to { text-shadow: 0 0 30px #ff4d6d; }
+  }
+
+  .heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+  }
+
+  @keyframes float {
+    from { transform: translateY(100vh); opacity: 0; }
+    to { transform: translateY(-10vh); opacity: 1; }
+  }
+
+  #picContainer {
+    cursor: pointer;
+    width: 260px;
+    height: 200px;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  #picContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+
+<h1 id="helloText">Hello Baby ❤️</h1>
+<button class="btn" id="startBtn">Touch this ❤️</button>
+
+<div class="section" id="loveSection">
+  <h1>I love you Mawa ❤️</h1>
+  <button class="btn" id="picsBtn">Moments</button>
+</div>
+
+<div class="section" id="picsSection">
+  <h2 id="monthTitle"></h2>
+  <div id="picContainer"></div>
+  <div class="quote" id="monthQuote"></div>
+</div>
+
+<div class="section" id="finalSection">
+  <h1>Happy New Year Mawa!</h1>
+  <h2 class="glitter">I love you soo much 😘</h2>
+  <div class="quote" style="color:white; margin-top:15px;">May our year be full of love and magic ✨</div>
+</div>
+</div>
+
+<script>
+let currentMonth = 0;
+
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const images = [
+  'pics/jan.jpg','pics/feb.jpg','pics/mar.jpg','pics/apr.jpg','pics/may.jpg','pics/jun.jpg',
+  'pics/jul.jpg','pics/aug.jpg','pics/sep.jpg','pics/oct.jpg','pics/nov.jpg','pics/dec.jpg'
+];
+const monthColors = ['#ffb3ba','#ffdfba','#ffffba','#baffc9','#bae1ff','#d5baff','#ffc9de','#c9fff2','#ffd6a5','#fdffb6','#caffbf','#bdb2ff'];
+const quotes = ['New beginnings with you ❤️','Love vibes in Feb 💕','Marching together 🌸','April showers bring love 🌧️','May our hearts bloom 🌼','Summer love Jun ☀️','July sparks 🔥','August memories 🌻','September romance 🍂','October cozy moments 🎃','November gratitude ❤️','December magic ✨'];
+
+const startBtn = document.getElementById('startBtn');
+const helloText = document.getElementById('helloText');
+const loveSection = document.getElementById('loveSection');
+const picsBtn = document.getElementById('picsBtn');
+const picsSection = document.getElementById('picsSection');
+const monthTitle = document.getElementById('monthTitle');
+const picContainer = document.getElementById('picContainer');
+const monthQuote = document.getElementById('monthQuote');
+const finalSection = document.getElementById('finalSection');
+
+function createHeart(){
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = '❤️';
+  heart.style.left = Math.random()*100 + 'vw';
+  heart.style.fontSize = Math.random()*25 + 15 + 'px';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+
+startBtn.onclick = ()=>{
+  startBtn.style.display = 'none';
+  helloText.style.display = 'none';
+  loveSection.style.display = 'flex';
+  document.body.style.background = '#000000';
+  setInterval(createHeart,300);
+}
+
+picsBtn.onclick = ()=>{
+  loveSection.style.display = 'none';
+  picsSection.style.display = 'flex';
+  showMonth();
+}
+
+function showMonth(){
+  if(currentMonth < months.length){
+    monthTitle.textContent = months[currentMonth];
+    picContainer.innerHTML = `<img src="${images[currentMonth]}">`;
+    monthQuote.textContent = quotes[currentMonth];
+    document.body.style.background = monthColors[currentMonth];
+  } else {
+    picsSection.style.display = 'none';
+    finalSection.style.display = 'flex';
+    document.body.style.background = '#000000';
+  }
+}
+
+picContainer.onclick = ()=>{
+  currentMonth++;
+  showMonth();
+}
+</script>
+
+</body>
+</html>
